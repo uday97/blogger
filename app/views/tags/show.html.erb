@@ -12,5 +12,7 @@
   <% end %>
 </p>
 
+<% if logged_in? %>
 <p><%= link_to 'Delete tag', tag_path(@tag), method: :delete, data: { confirm: "Do you really want to delete the tag?" } %></p>
+<% end %>
 <p><%= link_to 'Back to tags', tags_path %></p>

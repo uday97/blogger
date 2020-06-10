@@ -3,9 +3,11 @@
 <h3><%= link_to tag.name, tag_path(tag) %></h3>
 <% end %>
 <p><%= @article.body%></p>
-<%= link_to "Edit the article", edit_article_path(@article) %>
 <%= render partial: 'comments/form' %>
 <p>Comments (<%= @article.comments.size %>)</p>
 <%= render partial: 'articles/comment', collection: @article.comments %>
 <%= link_to "Back to articles", articles_path %>
-<%= link_to "Delete the article", article_path(@article), method: :delete, data: { confirm: "Do you really want to delete the article?" } %>
+<% if logged_in? %>
+  <%= link_to "Edit the article", edit_article_path(@article) %>
+  <%= link_to "Delete the article", article_path(@article), method: :delete, data: { confirm: "Do you really want to delete the article?" } %>
+<% end %>
