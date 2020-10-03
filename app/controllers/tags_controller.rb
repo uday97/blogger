@@ -1,4 +1,6 @@
 class TagsController < ApplicationController
+  include TagsHelper
+
   before_action :require_login, only: [:destroy]
 
   def index
@@ -14,4 +16,15 @@ class TagsController < ApplicationController
     @tag.destroy
     redirect_to tags_path
   end
+
+  def edit
+		@tag = Tag.find(params[:id])
+	end
+
+	def update
+		@tag = Tag.find(params[:id])
+		flash.notice = "Tag #{@tag.title} updated!"
+		@tag.update(tag_params)
+		redirect_to tag_path(@tag)
+	end
 end
